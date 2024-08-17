@@ -1,32 +1,87 @@
-import { BiSearch } from 'react-icons/bi'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { BsFillPersonFill } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import logo from '../assets/turbocore-logo.jpg'
+import { MdMenu } from 'react-icons/md'
+import { FaFireAlt } from "react-icons/fa";
+import { UpdateFollower } from "react-mouse-follower";
+
+const NavbarMenu = [
+    {
+        id: 1,
+        title: 'Home',
+        link: '/'
+    },
+    {
+        id: 2,
+        title: 'Categories',
+        link: '/'
+    },
+    {
+        id: 3,
+        title: 'Blog',
+        link: '/'
+    },
+    {
+        id: 4,
+        title: 'About',
+        link: '/'
+    }
+]
+
 const Navbar = () => {
     return (
-        <div>
-            <header className="text-gray-600 body-font">
-                <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-                    <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                        </svg> */}
-                        <span className="ml-3 text-xl">AirBnb</span>
-                    </a>
-                    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                        <a className="mr-5 hover:text-gray-900">Any where</a>
-                        <a className="mr-5 hover:text-gray-900">Any week</a>
-                        <a className="mr-5 hover:text-gray-900">Add guest</a>
-                        <div><BiSearch /></div>
-
-                    </nav>
-                    <div className='flex justify-center items-center gap-2 border-gray-200 shadow-md p-3 rounded-xl'>
-                        <div><GiHamburgerMenu /></div>
-                        <Link to='/login'><BsFillPersonFill /></Link>
+        <>
+            <div className="bg-brandDark text-white py-4 font-varela">
+                <nav className="flex justify-between items-center container">
+                    {/* Logo */}
+                    <div>
+                        <UpdateFollower mouseOptions={{
+                            backgroundColor: 'white',
+                            zIndex: 999,
+                            followSpeed: 1.5,
+                            scale: 5,
+                            mixBlendMode: 'difference'
+                        }}>
+                            <Link to='/' className="text-xl font-bold uppercase">
+                                <img src={logo} alt="" className="w-10 h-10 object-contain rounded-full" />
+                            </Link>
+                        </UpdateFollower>
                     </div>
-                </div>
-            </header>
-        </div>
+                    {/* Menu */}
+                    <div className="hidden md:block">
+                        <ul className="flex items-center gap-4">
+                            {NavbarMenu.map((item) => (
+                                <li key={item.id}>
+                                    <UpdateFollower mouseOptions={{
+                                        backgroundColor: 'white',
+                                        zIndex: 999,
+                                        followSpeed: 1.5,
+                                        scale: 5,
+                                        mixBlendMode: 'difference'
+                                    }}>
+                                        <Link to={item.link} className="inline-block text-sm py-2 px-3 uppercase">{item.title}</Link>
+                                    </UpdateFollower>
+                                </li>
+                            ))}
+                            <UpdateFollower mouseOptions={{
+                                backgroundColor: 'white',
+                                zIndex: 999,
+                                followSpeed: 1.5,
+                                scale: 5,
+                                mixBlendMode: 'difference'
+                            }}>
+                                <button className="text-xl px-14">
+                                    <FaFireAlt />
+                                </button>
+                            </UpdateFollower>
+                        </ul>
+                    </div>
+                    {/* Mobile hamburger section */}
+                    <div className="md:hidden">
+                        <MdMenu className="text-4xl" />
+                    </div>
+                </nav>
+            </div>
+        </>
     );
 };
 

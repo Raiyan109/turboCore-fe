@@ -21,7 +21,10 @@ const routes = createBrowserRouter([
         path: '/forgot-password',
         element: <ForgotPassword />
     },
-
+    {
+        path: '/forgot-password',
+        element: <ForgotPassword />
+    },
 ])
 
 export default routes
